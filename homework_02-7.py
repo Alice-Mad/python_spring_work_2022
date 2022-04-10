@@ -1,0 +1,8 @@
+print('Input numeric A')
+A = float(input())
+even_check = (A % 2 == 0)
+odd_check = (A % 2 != 0 and A == int(A))
+float_check = (A != int(A))
+print('numeric A is even -', even_check)
+print('numeric A is odd -', odd_check)
+print('type of numeric A is float -', float_check)
