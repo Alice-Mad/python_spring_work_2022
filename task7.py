@@ -11,4 +11,3 @@ float_check = (A != int(A))
 print('numeric A is even -', even_check)
 print('numeric A is odd -', odd_check)
 print('type of numeric A is float -', float_check)
-
