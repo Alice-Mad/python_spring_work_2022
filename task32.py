@@ -35,9 +35,9 @@ with psycopg.connect("dbname=postgres_32 user=user_32") as conn:
         cur.fetchone()
 # Try to create a constraint
         cur.execute("""
-            ALTER TABLE "profile"
-            ADD CONSTRAINT "user_profile_constraint"
-            FOREIGN KEY("id_user")
-            REFERENCES "User" ("id_user")
+            ALTER TABLE "student"
+            ADD CONSTRAINT "group_student_constraint"
+            FOREIGN KEY("id_group")
+            REFERENCES "User" ("id_group")
             ON DELETE RESTRICT
             """)
