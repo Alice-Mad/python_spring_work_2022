@@ -1,43 +1,21 @@
-# # todo: Написать скрипт создания базы данных(ER-модели) TestSystem
-# # Скрипт  create_db.py  должен создавать таблицы, индексы , констрейнты в СУБД PostgresSQL
-# # В задании использовать библиотеку psycopg
-#
-#
-# Ссылка на документацию
-# https://www.psycopg.org/psycopg3/docs/basic/usage.html
-# Для подключения использовать пользователя и базу отличную от postgres
-
 import psycopg
-with psycopg.connect("dbname=postgres_32 user=user_32") as conn:
-    # Open a cursor to perform database operations
+with psycopg.connect("dbname='postgres' user='postgres' host='localhost' password='mercury1960'") as conn:
     with conn.cursor() as cur:
-        # Execute a command: this creates a new table
-        cur.execute("""
-            CREATE TABLE group (
-                  id_group serial PRIMARY KEY,
-                  group_name varchar(10) not null,
-            """)
-        cur.execute("""
-            CREATE TABLE student (
-                id_student serial PRIMARY KEY,
-                id_group integer not null,
-                surname varchar(40) not null,
-                name varchar(30) not null,
-                second name varchar(30) not null,
-                age integer not null
-            """)
-# Pass data to fill a query placeholders and let Psycopg perform
-        # the correct conversion (no SQL injections!)
-        cur.execute(
-            "INSERT INTO group (group_name) VALUES (%s)", "1510")
-# Query the database and obtain data as Python objects.
-        cur.execute("SELECT * FROM group")
-        cur.fetchone()
-# Try to create a constraint
-        cur.execute("""
-            ALTER TABLE "student"
-            ADD CONSTRAINT "group_student_constraint"
-            FOREIGN KEY("id_group")
-            REFERENCES "User" ("id_group")
-            ON DELETE RESTRICT
-            """)
+#          # cur.execute("INSERT INTO study_group VALUES (%s, %s)", [1, "1510"])
+#         cur.execute("SELECT * FROM study_group")
+#         lst = cur.fetchone()
+# print(lst)
+# print(type(lst[0]))
+# print(type(lst[1]))
+        j = 800
+        k = 201
+        while True:
+            cur.execute("INSERT INTO answer VALUES (%s, %s, %s, %s);", [j, f"Theme3_Question{k-200}_FalseAnswer_1", False, k-1])
+            cur.execute("INSERT INTO answer VALUES (%s, %s, %s, %s);", [j+1, f"Theme3_Question{k-200}_FalseAnswer_2", False, k-1])
+            cur.execute("INSERT INTO answer VALUES (%s, %s, %s, %s);", [j+2, f"Theme3_Question{k-200}_FalseAnswer_3", False,k-1])
+            cur.execute("INSERT INTO answer VALUES (%s, %s, %s, %s);", [j+3, f"Theme3_Question{k-200}_TrueAnswer", True, k-1])
+            j += 4
+            k += 1
+            if j > 1199:
+                break
+            print(j)
